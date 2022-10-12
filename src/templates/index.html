@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<header class="d-flex justify-content-evenly">
+
+    <div class="card text-center mt-5">
+        <div class="card-header bg-success">
+            <span class="h2 p-3"><strong>Total Income</strong></span>
+        </div>
+        <div class="card-body">
+            <p class="h2">{{ total_income }}</p>
+        </div>
+        <div class="card-footer bg-success p-3"></div>
+    </div>
+
+    <div class="card text-center mt-5">
+        <div class="card-header bg-primary">
+            <span class="h2 p-3"><strong>Current Value</strong></span>
+        </div>
+        <div class="card-body">
+            <p class="h2">{{ total }}</p>
+        </div>
+        <div class="card-footer bg-primary p-3"></div>
+    </div>
+
+    <div class="card text-center mt-5">
+        <div class="card-header bg-danger">
+            <span class="h2 p-3"><strong>Totla Outcome</strong></span>
+        </div>
+        <div class="card-body">
+            <p class="h2">{{ total_outcome }}</p>
+        </div>
+        <div class="card-footer bg-danger text-end p-3"></div>
+    </div>
+
+</header>
+
+<p class="m-5">
+<div class="divider py-1 bg-dark m-5"></div>
+</p>
+
+<section class="card text-center mt-5">
+    <div class="card-header bg-primary">
+        <span class="h2"><strong>Income</strong></span>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead class="table-success">
+                <tr>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Date Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for data in form_inc|reverse %}
+            <tbody>
+
+                <tr>
+                    <td>{{ data.name_income}}</td>
+                    <td>{{ data.value_income}}</td>
+                    <td>{{ data.date_created.strftime('%Y-%m-%d')}}</td>
+                    <td><a href="{{ url_for('data_wallet.update_data_inc', id=data.id) }}" class="btn btn-sm btn-primary">
+                            Update
+                            <i class="bi bi-chevron-double-right"></i>
+                        </a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="card-footer bg-primary text-end p-3">
+        <a href="{{ url_for('data_wallet.add_income') }}" class="btn btn-sm btn-dark">
+            Add
+            <i class="bi bi-chevron-double-right"></i>
+        </a>
+    </div>
+</section>
+
+<p class="m-5">
+<div class="divider py-1 bg-dark m-5"></div>
+</p>
+
+<section class="card text-center">
+    <div class="card-header bg-primary">
+        <span class="h2"><strong>Outcome</strong></span>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead class="table-danger">
+                <tr>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Date Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for data in form_out|reverse %}
+            <tbody>
+
+                <tr>
+                    <td>{{ data.name_outcome}}</td>
+                    <td>{{ data.value_outcome}}</td>
+                    <td>{{ data.date_created.strftime('%Y-%m-%d')}}</td>
+                    <td><a href="{{ url_for('data_wallet.update_data_out', id=data.id) }}" class="btn btn-sm btn-primary">
+                            Update
+                            <i class="bi bi-chevron-double-right"></i>
+                        </a></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="card-footer bg-primary text-end p-3">
+        <a href="{{ url_for('data_wallet.add_outcome') }}" class="btn btn-sm btn-dark">
+            Add
+            <i class="bi bi-chevron-double-right"></i>
+        </a>
+    </div>
+</section>
+
+<p class="m-5">
+<div class="divider py-1 bg-dark m-5"></div>
+</p>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section class="card text-center mt-5">
+    <div class="card-header bg-primary">Add Outcome</div>
+    <div class="card-body">
+
+        <form method="POST" class="form-group row" action="">
+            {{ form.hidden_tag() }}
+            <div class="col-sm-6">
+                <label>{{ form.title.label(class='form-label m-3') }}</label>
+                {{ form.title(class='form-control') }}
+            </div>
+            <div class="col-sm-6">
+                <label>{{ form.value.label(class='form-label m-3') }}</label>
+                {{ form.value(class='form-control') }}
+            </div>
+
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary  m-3">Add</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="card-footer bg-primary text-muted p-4"></div>
+</section>
+
+{% endblock %}
